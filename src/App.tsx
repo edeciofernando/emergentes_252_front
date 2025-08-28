@@ -2,11 +2,13 @@ import { CardVeiculo } from "./components/CardVeiculo";
 import { InputPesquisa } from "./components/InputPesquisa";
 import type { CarroType } from "./utils/CarroType";
 import { useEffect, useState } from "react";
+import { useClienteStore } from "./context/ClienteContext"
 
 const apiUrl = import.meta.env.VITE_API_URL
 
 export default function App() {
   const [carros, setCarros] = useState<CarroType[]>([])
+  const { logaCliente } = useClienteStore()  
 
   useEffect(() => {
     async function buscaDados() {
@@ -16,6 +18,16 @@ export default function App() {
       setCarros(dados)
     }
     buscaDados()
+
+    async function buscaCliente(id: string) {
+      const response = await fetch(`${apiUrl}/clientes/${id}`)
+      const dados = await response.json()
+      logaCliente(dados)
+    }
+    if (localStorage.getItem("clienteKey")) {
+      const idCliente = localStorage.getItem("clienteKey")
+      buscaCliente(idCliente as string)
+    }    
   }, [])
 
   const listaCarros = carros.map( carro => (
