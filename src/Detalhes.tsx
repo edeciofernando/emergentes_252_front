@@ -1,6 +1,7 @@
 import type { CarroType } from "./utils/CarroType"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
+import { useClienteStore } from "./context/ClienteContext"
 
 const apiUrl = import.meta.env.VITE_API_URL
 
@@ -8,6 +9,7 @@ export default function Detalhes() {
   const params = useParams()
 
   const [carro, setCarro] = useState<CarroType>()
+  const { cliente } = useClienteStore()
 
   useEffect(() => {
     async function buscaDados() {
@@ -38,6 +40,25 @@ export default function Detalhes() {
           <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
             {carro?.acessorios}
           </p>
+          {cliente.id ?
+            <>
+              <h3 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+                🙂Você pode fazer uma Proposta para este veículo!</h3>
+              <form>
+                <input type="text" className="mb-2 mt-4 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" value={`${cliente.nome} (${cliente.email})`} disabled readOnly />
+                <textarea id="message" className="mb-2 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Descreva a sua proposta"
+                  required></textarea>
+                <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Enviar Proposta</button>
+              </form>
+            </>
+            :
+            <h2 className="mb-2 text-xl tracking-tight text-gray-900 dark:text-white">
+              😎Gostou? Identifique-se e faça uma Proposta!
+            </h2>
+          }
+
+
         </div>
       </section>
     </>
