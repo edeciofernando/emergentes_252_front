@@ -39,7 +39,7 @@ export default function Titulo() {
                                     <span className="text-black">
                                         {cliente.nome}
                                     </span>&nbsp;&nbsp;
-                                    <Link to="/propostas" className="text-white font-bold bg-gray-600 hover:bg-gray-700 focus:ring-2 focus:outline-none focus:ring-gray-400 rounded-lg text-sm w-full sm:w-auto px-3 py-2 text-center dark:bg-gray-500 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
+                                    <Link to="/minhasPropostas" className="text-white font-bold bg-gray-600 hover:bg-gray-700 focus:ring-2 focus:outline-none focus:ring-gray-400 rounded-lg text-sm w-full sm:w-auto px-3 py-2 text-center dark:bg-gray-500 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
                                         Minhas Propostas
                                     </Link>&nbsp;&nbsp;
                                     <span className="cursor-pointer font-bold text-gray-600"
