@@ -12,7 +12,7 @@ export default function App() {
 
   useEffect(() => {
     async function buscaDados() {
-      const response = await fetch(`${apiUrl}/carros`)
+      const response = await fetch(`${apiUrl}/carros/destaques`)
       const dados = await response.json()
 //      console.log(dados)
       setCarros(dados)
