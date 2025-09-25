@@ -4,7 +4,7 @@ import { FaRegStar } from "react-icons/fa"
 import type { CarroType } from "../../utils/CarroType"
 import { useAdminStore } from "../context/AdminContext"
 
-interface listaCarroProps {
+type listaCarroProps = {
   carro: CarroType;
   carros: CarroType[];
   setCarros: React.Dispatch<React.SetStateAction<CarroType[]>>;
